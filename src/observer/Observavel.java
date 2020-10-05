@@ -15,14 +15,24 @@ public abstract class Observavel {
 	
 	public void adicionarObserver(Observador observer) {
 		//TODO implemente o codigo que permite a um observable (de interesse) adicionar um objeto observer (interessado)
+		
+		observadoresRegistrados.add(observer);
+		
 	}
 	
 	public void removerObserver(Observador observer) {
 		//TODO implemente o codigo que permite a um observable (de interesse) remover um objeto observer (interessado)
+		
+		observadoresRegistrados.remove(observer);
 	}
 	
 	public void notificarTodos(Evento evento) {
-		//TODO implemente codigo que notifica todos os obervers sobre mudancas no observable. Nao esquecer de passar um objeto Event capaz de informar/caracterizar o que mudou no observer
+		//TODO implemente codigo que notifica todos os obervers sobre mudancas no observable.
+		//Nao esquecer de passar um objeto Event capaz de informar/caracterizar o que mudou no observer
+		
+		for (Observador observador : observadoresRegistrados) {
+			observador.tratarEvento(evento); 
+		}
 	}
 
 }

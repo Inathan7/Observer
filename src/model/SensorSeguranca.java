@@ -1,6 +1,7 @@
 package model;
 
 import observer.Evento;
+import observer.Observavel;
 
 /*
  * TODO OBSERVER.02.1
@@ -8,7 +9,8 @@ import observer.Evento;
  * 1. Mude esta classe para que atue como um objeto do tipo Observavel (de interesse).
  * 
  */
-public class SensorSeguranca {
+//1
+public class SensorSeguranca extends Observavel{
 
 	private String identificador;
 
@@ -30,8 +32,9 @@ public class SensorSeguranca {
 		 * 2. Passe o evento abaixo na notificação. Cuidado para nao setar antes de notificar!
 		 */
 		
-		
+		//1 & 2
 		Evento evento = new Evento(this.identificador, "movimento", this.movimento, ativo);
+		notificarTodos(evento);
 		this.movimento = ativo;
 	}
 
@@ -49,7 +52,9 @@ public class SensorSeguranca {
 		 * 2. Passe o evento abaixo na notificação. Cuidado para nao setar antes de notificar!
 		 */
 		
+		//1 & 2
 		Evento evento = new Evento(this.identificador, "online", this.movimento, online);
+		notificarTodos(evento);
 		this.online = online;
 	}
 

@@ -1,5 +1,7 @@
 package model;
 
+import observer.Evento;
+import observer.Observador;
 
 /*
  * TODO OBSERVER.03
@@ -10,7 +12,9 @@ package model;
  * Se o evento for "movimento" true, ou "online" true ou false, este interessado deve ser notificado por email do problema: chame enviarEmail().
  * Perceba que este Observador faz "o que quiser" quando eh notificado, dependendo do nome do evento e valores por ele passados quando for notificado.	
  */
-public class Mensageiro {
+
+//1
+public class Mensageiro implements Observador{
 
 	private String nome;
 
@@ -23,7 +27,20 @@ public class Mensageiro {
 	}
 
 	public void enviarEmail(String mensagem) {
-		System.out.println("email enviad para ---> " + this.nome + " \nmensagem ---> "+mensagem);
+		System.out.println("email enviado para ---> " + this.nome + " \nmensagem ---> "+mensagem);
+	}
+
+	//2
+	@Override
+	public void tratarEvento(Evento evento) {
+		if(evento.getNomeEvento().equals("movimento") && 
+				evento.getValorNovo().equals(true) ||
+				evento.getNomeEvento().equals("online")) {
+			
+			enviarEmail("Movimento: true"+
+						"\nOnline: true ou false");
+		}
+		
 	}
 
 }

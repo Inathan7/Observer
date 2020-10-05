@@ -2,6 +2,9 @@ package model;
 
 import java.awt.Toolkit;
 
+import observer.Evento;
+import observer.Observador;
+
 
 /*
  * TODO OBSERVER.04
@@ -14,7 +17,8 @@ import java.awt.Toolkit;
  * Perceba que este Observador faz "o que quiser" quando eh notificado, dependendo do nome do evento e valores por ele passados quando for notificado.
  * 
  */
-public class ControleAlarme {
+//1
+public class ControleAlarme implements Observador {
 
 	public  void dispararAlarme() {
 		int i = 0;
@@ -41,5 +45,18 @@ public class ControleAlarme {
 			Toolkit.getDefaultToolkit().beep();
 			i++;
 		}
+	}
+
+//2
+	@Override
+	public void tratarEvento(Evento evento) {
+		if(evento.getNomeEvento().equals("movimento") &&
+				evento.getValorNovo().equals(true)) {
+			dispararAlarme();
+		}else if(evento.getNomeEvento().equals("movimento") &&
+				evento.getValorAntigo().equals(false)) {
+			pararAlarme();
+		}
+		
 	}
 }
